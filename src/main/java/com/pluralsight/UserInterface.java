@@ -1,32 +1,22 @@
 package com.pluralsight;
 
-public class UserInterface {
-    public static void main(String[] args) {
+import java.util.ArrayList;
+import java.util.Scanner;
 
+public class UserInterface extends Dealership {
+    public void VehiclesByColor() {
+        Scanner myscanner = new Scanner(System.in);
 
-        Dealership dealer = new Dealership();
-        dealer.name = "juma";
-
-        System.out.println(dealer.name);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        ArrayList<Vehicle> filteredVehicles = new ArrayList<>();
+        System.out.print("Enter color: ");
+        String color = myscanner.next();
+        for (Vehicle vehicle : inventory){
+            if (color.equalsIgnoreCase(color)){
+                Vehicle Vehicle = null;
+                filteredVehicles.add(vehicle);
+            }
+        }
     }
-
 
 
 

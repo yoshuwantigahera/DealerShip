@@ -3,6 +3,7 @@ package com.pluralsight;
 import java.io.*;
 //import java.lang.classfile.CodeBuilder;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Dealership {
     String name;
@@ -42,50 +43,68 @@ public class Dealership {
         this.phone = phone;
     }
 
-    public ArrayList<Vehicle> getVehiclesByPrice(double minPrice, double maxPrice) {
+    public ArrayList<Vehicle> getVehiclesByPriceRange(double minPrice, double maxPrice) {
          ArrayList<Vehicle> filteredVehicles = new ArrayList<>();
          for (Vehicle vehicle : inventory) {
              if (vehicle.getPrice() >= minPrice && vehicle.getPrice() <= maxPrice) {
                  filteredVehicles.add(vehicle);
              }
-         } return filteredVehicles; }
+         } return filteredVehicles;
+     }
 
-    public void addVehicle(){
 
+
+    public ArrayList<Vehicle> searchByMileage(double minMileage, double maxmileage){
+         ArrayList<Vehicle> filteredVehicles = new ArrayList<>();
+         for (Vehicle vehicle : inventory){
+             if (vehicle.getMileage() >= minMileage && vehicle.getMileage() <= maxmileage);
+             filteredVehicles.add(vehicle);
+         }
+            return filteredVehicles;
     }
 
-    public void getAllVehicle(){
+    ArrayList<Vehicle> searchByYear(int minYear, int maxMin){
+        ArrayList<Vehicle> filteredVehicles = new ArrayList<>();
         for (Vehicle vehicle : inventory){
-            System.out.println(vehicle);
+            if (vehicle.getYear() >= minYear && vehicle.getYear() <= vehicle.getYear()){
+                filteredVehicles.add(vehicle);
+            }
         }
+        return filteredVehicles;
     }
 
-    public void searchByMileage(){
-
-    }
-
-    public void searchByColor(){
+    public void addVehicle(String Vehicle){
 
     }
 
-    public void searchByYear(){
+
+    public void VehiclesByColor() {
+        Scanner myscanner = new Scanner(System.in);
+
+        ArrayList<Vehicle> filteredVehicles = new ArrayList<>();
+        System.out.print("Enter color: ");
+        String color = myscanner.next();
+        for (Vehicle vehicle : inventory){
+            if (vehicle.getColor().equalsIgnoreCase(color)){
+//                Vehicle Vehicle = null;
+                filteredVehicles.add(vehicle);
+            }
+        }
 
     }
+
 
     public void searchByMakeModel(){
 
     }
 
-    public void searchBytype(){
+//    ArrayList<Vehicle>searchBytype(){
+//
+//    }
 
-    }
 
-    public void searchByPriceRange(int min, int max){
-
-    }
-
-    public void removeVehicle(){
-
+    public boolean removeVehicle(String vin){
+        return inventory.removeIf(vehicle -> vehicle.getVin().equals(vin));
     }
 
 
@@ -100,8 +119,8 @@ public class Dealership {
                      continue;
                  }
                  Vehicle vehicle = new Vehicle(
-                         Integer.parseInt(details[0]),
-                         Integer.parseInt(details[1]),
+                         details[0],
+                         Integer.parseInt(details[1]), //convert string to integer
                          details[2],
                          details[3],
                          details[4],
@@ -126,6 +145,12 @@ public class Dealership {
          } catch (IOException e){
                  System.out.println("Error writing file: " + e.getMessage());
     }      }
+
+    public void getAllVehicle(){
+        for (Vehicle vehicle : inventory){
+            System.out.println(vehicle);
+        }
+    }
 
 
 

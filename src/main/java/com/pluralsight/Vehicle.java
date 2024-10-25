@@ -1,23 +1,23 @@
 package com.pluralsight;
 
 public class Vehicle {
-    private int vin;
-    private int year;
+    String vin;
+     private int year;
     private String make;
     private String model;
     private String vehicleType;
     private String color;
-    private int odometer;
+    private int mileage;
     private double price;
     //constructor
-    public Vehicle(int vin, int year,String make, String model,String vehicleType, String color, int odometer, double price){
+    public Vehicle(String vin, int year,String make, String model,String vehicleType, String color, int mileage, double price){
         this.vin = vin;
         this.year = year;
         this.make = make;
         this.model = model;
         this.vehicleType = vehicleType;
         this.color = color;
-        this.odometer = odometer;
+        this.mileage = mileage;
         this.price = price;
     }
 
@@ -25,11 +25,12 @@ public class Vehicle {
     public Vehicle(){
 
     }
+
     //getters and setters
-    public int getVin() {
-        return vin;
+    public String getVin() {
+        return this.vin;
     }
-    public void setVin(int vin) {
+    public void setVin(String vin) {
         this.vin = vin;
     }
 
@@ -64,8 +65,15 @@ public class Vehicle {
     public String getColor() {
         return color;
     }
-    public void setOdometer(int odometer) {
-        this.odometer = odometer;
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public int getMileage() {
+        return mileage;
+    }
+    public void setMileage(int mileage) {
+        this.mileage = mileage;
     }
 
     public double getPrice() {
