@@ -1,11 +1,9 @@
 package com.pluralsight;
 
-import java.io.*;
 //import java.lang.classfile.CodeBuilder;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-import java.util.stream.Collectors;
+        import java.util.stream.Collectors;
 
 
 public class Dealership {
@@ -54,7 +52,7 @@ public class Dealership {
 
 
 
-    public List<Vehicle> searchByMileage(double minMileage, double maxmileage){
+    public List<Vehicle> getVehiclesByMileageRange(double minMileage, double maxmileage){
         return inventory.stream()
                 .filter(vehicle -> vehicle.getPrice() >= minMileage && vehicle.getPrice() <= maxmileage)
                 .collect(Collectors.toList());
@@ -72,16 +70,22 @@ public class Dealership {
     }
 
 
-    public List<Vehicle> VehiclesByColor(String color) {
+    public List<Vehicle> getVehiclesByColor(String color) {
         return inventory.stream()
                 .filter(vehicle -> vehicle.getColor().equalsIgnoreCase(color))
                 .collect(Collectors.toList());
     }
 
-    public List<Vehicle> vehiclesByTpe(String type){
+    public List<Vehicle> getVehiclesByType(String type){
          return inventory.stream()
-                 .filter(vehicle -> vehicle.getMake().equalsIgnoreCase(type))
+                 .filter(vehicle -> vehicle.getVehicleType().equalsIgnoreCase(type))
                  .collect(Collectors.toList());
+    }
+
+    public List<Vehicle> getVehiclesByMakeModel(String make, String model) {
+        return inventory.stream()
+                .filter(vehicle -> vehicle.getMake().equalsIgnoreCase(make) && vehicle.getModel().equalsIgnoreCase(model))
+                .collect(Collectors.toList());
     }
 
 
@@ -89,10 +93,11 @@ public class Dealership {
         return inventory.removeIf(vehicle -> vehicle.getVin().equals(vin));
     }
 
-    public void getAllVehicle(){
+    public List<Vehicle> getAllVehicle(){
         for (Vehicle vehicle : inventory){
             System.out.println(vehicle);
         }
+        return null;
     }
 
 

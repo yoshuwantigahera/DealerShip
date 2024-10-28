@@ -1,8 +1,8 @@
 package com.pluralsight;
 
 public class Vehicle {
-    String vin;
-     private int year;
+    private String vin;
+    private int year;
     private String make;
     private String model;
     private String vehicleType;
