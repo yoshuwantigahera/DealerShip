@@ -1,48 +1,53 @@
 package com.pluralsight;
 
 import java.io.*;
+import java.util.Scanner;
 
-public class DealerShipFileManager extends Dealership {
+public class DealerShipFileManager {
+    private String filename;
 
-    //method to load vehicles from CSV file
-    public void inventory(String filePath){
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            while((line = br.readLine()) != null){
-                String[] details = line.split("\\|");
-                if(details.length < 8){
-                    System.out.println("Invalid line: " + line);
-                    continue;
-                }
-                Vehicle vehicle = new Vehicle(
-                        details[0],
-                        Integer.parseInt(details[1]), //convert string to integer
-                        details[2],
-                        details[3],
-                        details[4],
-                        details[5],
-                        Integer.parseInt(details[6]),
-                        Double.parseDouble(details[7])
-                );
-                inventory.add(vehicle);
-            }
-        }catch (IOException e){
-            System.out.println("Error reading file " + e.getMessage());
-        }
+
+    public DealerShipFileManager(String filename) {
+        this.filename = filename;
+
     }
 
 
-    //Method to save vehicles to a CSV file
-    public void saveInventory(String filePath){
-        File file = new File("inventory.csv");
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))){
-            for(Vehicle vehicle: inventory){
-                bw.write(vehicle.toString());
-                bw.newLine();
+    //method to load vehicles from CSV file
+    public Dealership getDealership() {
+        Dealership dealership = null;
+        try (Scanner myScanner = new Scanner(new File(filename))) {
+            if (myScanner.hasNextLine()) {
+                String[] dealershipInfo = myScanner.nextLine().split("\\|");
+                dealership = new Dealership(dealershipInfo[0], dealershipInfo[1], dealershipInfo[2]);
+
+
+                while (myScanner.hasNextLine()) {
+                    String line = myScanner.nextLine();
+                    String[] vehicleInfo = line.split("\\|");
+                    String vin = vehicleInfo[0];
+                    int year = Integer.parseInt(vehicleInfo[1]);
+                    String make = vehicleInfo[2];
+                    String model = vehicleInfo[3];
+                    String type = vehicleInfo[4];
+                    String color = vehicleInfo[5];
+                    int mileage = Integer.parseInt(vehicleInfo[6]);
+                    double price = Double.parseDouble(vehicleInfo[7]);
+
+                    Vehicle vehicle = new Vehicle(vin, year, make, model, type, color, mileage, price);
+                    dealership.addVehicle(vehicle);
+
+                }
             }
-        } catch (IOException e){
-            System.out.println("Error writing file: " + e.getMessage());
-        }      }
-
-
+        } catch (FileNotFoundException e) {
+            System.out.println("Error: Inventory file not.");
+        } catch (NumberFormatException e) {
+            System.out.println("Error: invalid number format in inventory file.");
+            e.printStackTrace();
+        }
+        return dealership;
+    }
 }
+
+
+
