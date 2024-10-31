@@ -6,13 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class UserInterface extends Dealership {
+public class UserInterface{
 
     private Scanner myScanner = new Scanner(System.in);
     private Dealership dealership;
 
     //constructor
     public UserInterface(){
+        this.myScanner = new Scanner(System.in);
         init();
     }
 
@@ -48,31 +49,31 @@ public class UserInterface extends Dealership {
             myScanner.nextLine();
             switch (choice) {
                 case 1:
-                    // Call method to find vehicle by price range
+                    processFindVehiclesByPriceRange();
                     break;
                 case 2:
-                    // Call method to find vehicle by make/model
+                    processFindVehiclesByMakeModel();
                     break;
                 case 3:
-                    // Call method to find vehicles by year range
+                    processFindVehiclesByYearRange();
                     break;
                 case 4:
-                    // Call method to find vehicles by color
+                    processFindVehiclesByColor();
                     break;
                 case 5:
-                    // Call method to find vehicles by mileage range
+                    processFindVehiclesByMileageRange();
                     break;
                 case 6:
-                    // Call method to find vehicles by type
+                    processFindVehiclesByType();
                     break;
                 case 7:
-                    // Call method to list all vehicles
+                    processGetAllVehicles();
                     break;
                 case 8:
-                    // Call method to add a vehicle
+                    processAddVehicle();
                     break;
                 case 9:
-                    // Call method to remove a vehicle
+                    processRemoveVehicle();
                     break;
                 case 99:
                     System.out.println("Exiting...");
@@ -164,28 +165,28 @@ public class UserInterface extends Dealership {
          double price;
 
         System.out.print("Enter vehicle ID: ");
-         vin = myScanner.nextLine();
+         vin = this.myScanner.nextLine();
 
         System.out.print("Enter vehicle make: ");
-         make = myScanner.next();
+         make = this.myScanner.next();
 
         System.out.print("Enter vehicle model: ");
-         model = myScanner.next();
+         model = this.myScanner.next();
 
         System.out.print("Enter vehicle year: ");
-         year = myScanner.nextInt();
+         year = this.myScanner.nextInt();
 
         System.out.print("Enter vehicle color: ");
-         color = myScanner.next();
+         color = this.myScanner.next();
 
         System.out.print("Enter vehicle mileage: ");
-         mileage = myScanner.nextInt();
+         mileage = this.myScanner.nextInt();
 
         System.out.print("Enter vehicle type (car, truck, SUV, van): ");
-         vehicleType = myScanner.next();
+         vehicleType = this.myScanner.next();
 
         System.out.print("Enter vehicle price: ");
-         price = myScanner.nextDouble();
+         price = this.myScanner.nextDouble();
 
         Vehicle newVehicle = new Vehicle(vin, make, model, year, color, mileage, vehicleType, price);
 

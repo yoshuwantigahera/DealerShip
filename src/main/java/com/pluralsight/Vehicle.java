@@ -21,9 +21,8 @@ public class Vehicle {
         this.price = price;
     }
 
-    //EmptyConstructor
-    public Vehicle(){
 
+    public Vehicle(String vin, String make, String model, int year, String color, int mileage, String vehicleType, double price) {
     }
 
     //getters and setters
